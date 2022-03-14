@@ -4,20 +4,20 @@ const Link = require('../models/link')
 
 router.get('/:code/view', async(req, res, next)=>{
   const code = req.params.code
-  const resultado = await Link.findOne({where: {code}})
-  if(!resultado)return res.sendView(404)
-  res.render('view', resultado.dataValues)
+  const result = await Link.findOne({where: {code}})
+  if(!result)return res.sendView(404)
+  res.render('view', result.dataValues)
 })
 
 router.get('/:code', async (req, res, next) => {
   const code = req.params.code
 
-  const resultado = await Link.findOne({where: {code}})
-  if(!resultado)return res.sendView(404)
-  resultado.hits++
-  await resultado.save()
+  const result = await Link.findOne({where: {code}})
+  if(!result)return res.sendView(404)
+  result.hits++
+  await result.save()
 
-  res.redirect(resultado.url)
+  res.redirect(result.url)
 })
 
 /* GET home page. */
@@ -37,11 +37,11 @@ router.post('/new', async (req, res, next) =>{
  const url = req.body.url;
  const code = geradorCodi()
 
- const resultado = await Link.create({
+ const result = await Link.create({
    url,
    code
  })
 
- res.render('view', resultado.dataValues)
+ res.render('view', result.dataValues)
 })
 module.exports = router;
