@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-function geradorCodi(){
+function generatorCode(){
   let text = ''
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   for(let i = 0; i < 8; i++)
@@ -35,7 +35,7 @@ function geradorCodi(){
 
 router.post('/new', async (req, res, next) =>{
  const url = req.body.url;
- const code = geradorCodi()
+ const code = generatorCode()
 
  const result = await Link.create({
    url,
